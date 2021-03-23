@@ -1,0 +1,32 @@
+html, body, header, .carousel {
+  height: 60vh;
+}
+
+.footer {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.error ul {
+  list-style-type: none;
+  text-align: left;
+  padding-inline-start: 0;
+}
+
+.error-center ul {
+  list-style-type: none;
+  text-align: center;
+  padding-inline-start: 0;
+}
+
+@media (max-width: 740px) {
+  html, body, header, .carousel {
+    height: 100vh;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+  html, body, header, .carousel {
+    height: 100vh;
+  }
+}

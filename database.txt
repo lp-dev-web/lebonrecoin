@@ -1,0 +1,78 @@
+//// -- LEVEL 1
+//// -- Tables and References
+
+// Creating tables
+Table User {
+  id int [pk, increment]
+  username varchar
+  first_name varchar
+  last_name varchar
+  email varchar
+  password varchar
+  address int [ref: > Address.id]
+  birth_date date
+  created_at datetime
+}
+
+Table Countrie {
+  code varchar [pk]
+  name varchar
+}
+
+Table Region {
+  code int [pk]
+  name varchar
+  country varchar [ref: > Countrie.code]
+}
+
+Table Citie {
+  code int [pk]
+  name varchar
+  country varchar [ref: > Countrie.code]
+  region int [ref: > Region.code]
+}
+
+Table Address {
+  id int [pk, increment]
+  user int [ref: > Countrie.code]
+  country varchar [ref: > Countrie.code]
+  region int [ref: > Region.code]
+  city int [ref: > Citie.code]
+  address varchar
+  phone_number int
+}
+
+Table Categorie {
+  id int [pk, increment]
+  name varchar
+}
+
+Table State {
+  id int [pk, increment]
+  name varchar
+}
+
+Table Product {
+  id int [pk, increment]
+  user int [ref: > User.id]
+  categorie int [ref: > Categorie.id]
+  title varchar
+  price int
+  description varchar
+  state int [ref: > State.id]
+  created_at datetime
+}
+
+Table Picture {
+  id int [pk, increment]
+  product int [ref: > Product.id]
+  picture_1 varchar
+  picture_2 varchar
+  picture_3 varchar
+}
+
+Table Favorite {
+  id int [pk, increment]
+  user int [ref: > User.id]
+  product int [ref: > Product.id]
+}

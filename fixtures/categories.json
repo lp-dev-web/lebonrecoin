@@ -1,0 +1,51 @@
+[
+{
+  "model": "app.categorie",
+  "pk": 3,
+  "fields": {
+    "name": "Véhicules"
+  }
+},
+{
+  "model": "app.categorie",
+  "pk": 4,
+  "fields": {
+    "name": "Immobilier"
+  }
+},
+{
+  "model": "app.categorie",
+  "pk": 7,
+  "fields": {
+    "name": "Animaux"
+  }
+},
+{
+  "model": "app.categorie",
+  "pk": 8,
+  "fields": {
+    "name": "Mode"
+  }
+},
+{
+  "model": "app.categorie",
+  "pk": 9,
+  "fields": {
+    "name": "Multimédia"
+  }
+},
+{
+  "model": "app.categorie",
+  "pk": 12,
+  "fields": {
+    "name": "Matériel Professionnel"
+  }
+},
+{
+  "model": "app.categorie",
+  "pk": 13,
+  "fields": {
+    "name": "Divers"
+  }
+}
+]

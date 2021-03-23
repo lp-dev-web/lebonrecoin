@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <!--Main layout-->
+    <main class="mt-5 pt-4">
+        <div class="container wow fadeIn">
+            {% if messages %}
+                {% for alert in messages %}
+                    <div class="mt-2">
+                        <div class="alert alert-{{ alert.level_tag }}">
+                            {{ alert.message }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="m-5 flex-center">
+                <!--Card-->
+                <div class="col-lg-12 card">
+                    <!--Card content-->
+                    <form enctype="multipart/form-data" action="" method="post" class="card-body">
+                        {% csrf_token %}
+                        <!-- Heading -->
+                        <h2 class="mt-4 mb-5 h2 text-center"><strong>{{ title }}</strong></h2>
+                        <hr>
+                        {% for field in form %}
+                            <section class="mb-4">
+                                {{ field.label }}
+                                {{ field }}
+                                <div class="grey-text">
+                                    {{ field.help_text }}
+                                </div>
+                                <div class="red-text error">
+                                    {{ field.errors }}
+                                </div>
+                            </section>
+                        {% endfor %}
+                        <hr class="mt-4 mb-4">
+                        {% if back %}
+                            <button class="btn deep-orange white-text btn-lg btn-block" type="submit">{% trans "Send" %}</button>
+                        {% else %}
+                            <div class="row flex-center">
+                                <div class="col-md-6">
+                                    {% if value %}
+                                        <a class="btn deep-orange white-text btn-lg btn-block" href="{% url link value %}">{% trans "Back" %}</a>
+                                    {% else %}
+                                        <a class="btn deep-orange white-text btn-lg btn-block" href="{% url link %}">{% trans "Back" %}</a>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-6 mt-2 mt-md-0">
+                                    <button class="btn deep-orange white-text btn-lg btn-block" type="submit">{{ button }}</button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+            {% if extra %}
+                <div class="row flex-center mb-5">
+                    <div class="col-md-6">
+                        <a class="btn deep-orange white-text btn-lg btn-block" href="{% url "edit-ad-picture" pictures.id %}">{% trans "Edit pictures" %}</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}

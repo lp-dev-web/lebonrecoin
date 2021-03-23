@@ -1,0 +1,253 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}{{ object.title }}{% endblock %}
+{% block content %}
+    <!--Main layout-->
+    <main class="mt-5 pt-4">
+        <div class="container dark-grey-text">
+            {% if messages %}
+                {% for alert in messages %}
+                    <div class="mt-2">
+                        <div class="alert alert-{{ alert.level_tag }}">
+                            {{ alert.message }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+                <div class="container wow fadeIn mb-4{% if not messages %} mt-5{% endif %}">
+                    <!--Grid row-->
+                    <div class="row">
+                        <!--Grid column-->
+                        <div class="col-lg-8">
+                            <!--Card-->
+                            <div class="card">
+                                <div class="card-body">
+                                    <!--Carousel Wrapper-->
+                                    <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel" style="height: 400px">
+                                        <!--Indicators-->
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+                                            {% if pictures.picture_2 %}
+                                                <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+                                            {% endif %}
+                                            {% if pictures.picture_3 %}
+                                                <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+                                            {% endif %}
+                                        </ol>
+                                        <!--Slides-->
+                                        <div class="carousel-inner" role="listbox">
+                                            <!--First slide-->
+                                            <div class="carousel-item active">
+                                                <div class="view"
+                                                     style="background-image: url({{ pictures.picture_1.url }});
+                                                             background-repeat: no-repeat; background-size: cover;
+                                                             background-position: center;">
+                                                </div>
+                                            </div>
+                                            {% if pictures.picture_2 %}
+                                                <!--Second slide-->
+                                                <div class="carousel-item">
+                                                    <div class="view"
+                                                         style="background-image: url({{ pictures.picture_2.url }});
+                                                                 background-repeat: no-repeat; background-size: cover;
+                                                                 background-position: center;">
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                            {% if pictures.picture_3 %}
+                                                <!--Third slide-->
+                                                <div class="carousel-item">
+                                                    <div class="view"
+                                                         style="background-image: url({{ pictures.picture_3.url }});
+                                                                 background-repeat: no-repeat; background-size: cover;
+                                                                 background-position: center;">
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                        <!--Controls-->
+                                        <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                    <!-- Heading -->
+                                    <h3 class="d-flex justify-content-between align-items-center m-1 mb-2 mt-3">{{ object.title }}
+                                        {% if address %}
+                                            <span class="round">
+                                                <a href="
+                                                    {% if user.is_authenticated %}
+                                                        {% url "fav" object.id %}
+                                                    {% else %}
+                                                        {% url "login" %}
+                                                    {% endif %}
+                                                " class="dark-ic">
+                                                    {% if not request.user.username %}
+                                                        <i class="far fa-heart"></i>
+                                                    {% else %}
+                                                        {% if favorite %}
+                                                            <i class="fas fa-heart red-ic"></i>
+                                                        {% else %}
+                                                            <i class="far fa-heart"></i>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                </a>
+                                            </span>
+                                        {% endif %}
+                                    </h3>
+                                    <h4 class="deep-orange-text m-1">{{ object.price }} €</h4>
+                                    <p class="m-1">{% trans "Created on" %} {{ object.created_at }}.</p>
+                                    <hr>
+                                    <h4 class="m-1">{% trans "Description" %}</h4>
+                                    <p class="m-1">{{ object.description }}</p>
+                                    <hr>
+                                    <h4 class="m-1">{% trans "State" %}</h4>
+                                    <p class="m-1">{{ object.state }}</p>
+                                    {% if address %}
+                                        <hr>
+                                        <h4 class="m-1">{% trans "Localisation" %}</h4>
+                                        <p class="m-1">{{ address.country }}, {{ address.region }}, {{ address.city }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+                        <div class="col-lg-4 mb-4 mt-3 mt-lg-0">
+                            <!--Card-->
+                            <div class="card">
+                                <!--Card content-->
+                                <div class="card-body">
+                                    <h5 class="d-flex align-items-center">
+                                        <svg viewBox="0 0 200 200" height="2.5em" class="mr-2">
+                                            <circle fill="#F3F7FA" cx="100" cy="100" r="100"></circle>
+                                            <path fill="#BCC2D0" d="M141.9 128.3c-27.1-1.4-79.3-.5-97.5-.1-7.9.2-15.6 2.6-22 7.2-4 2.9-7.9 6.9-10.2 12.3C29.1 178.9 62.1 200 100 200c13.3 0 26.4-2.6 38.6-7.7 8.3-3.7 16.1-8.5 23.3-14.1 2.5-12.9 7.1-48.5-20-49.9z"></path>
+                                            <path fill="#E1E4EB" d="M75.3 105.5l-.3 35.7c0 2.9.6 5.8 1.8 8.5l.2.5c3.6 8.2 12.1 13.1 21 12.1 4.2-.5 8.2-2.2 11.4-5 6.2-5.4 10.1-12.9 11.2-21l1.6-11.6-46.9-19.2z"></path>
+                                            <path fill="#BCC2D0" d="M118.5 144.5c.7-1.5 1.4-3.8 2.2-8.3l1.6-11.6-47-19.1 16.3 22.3c3.4 4.7 7.6 8.8 12.5 12 4.2 2.8 9.4 5.2 14.4 4.7z"></path>
+                                            <path fill="#E1E4EB" d="M148.5 82.1c-1.8 25-10.4 69.7-45 51.6 0 0-12.3-5.2-22.7-19.1-2.9-3.9-7.1-11.5-8.7-16.1L67.7 85c-6.1-16.6-3.3-35.4 8-49.1C82 28.2 95 22.2 108 22.3c22.8.2 31.2 10.4 36.1 24 3.2 8.8 5 26.5 4.4 35.8z"></path>
+                                            <path fill="#BCC2D0" d="M82 96.5c-1.5-5.3-10 2.1-10 2.1.9 2.4 2 4.7 3.2 7v3.1c5.2-1.6 8.3-7 6.8-12.2z"></path>
+                                            <path fill="#97A0B6" d="M83.3 11.4c-28.2 7.8-44.7 37.3-36.8 65.7 4.2 15.1 14.8 27.7 29.1 34.3v-10.7l4.5-9s38.5-14.6 53.2-49.3c0 0 5.4 15.1 11.8 27.6 1.2 2.5 2.5 4.9 3.7 7.1.1-.5.3-1 .4-1.5 2.1-8.9 2-18.1-.5-26.9-7.8-28.5-37.1-45.1-65.4-37.3z"></path>
+                                            <circle fill="#E1E4EB" cx="77.7" cy="95.8" r="9.9"></circle>
+                                        </svg>
+                                        {{ object.user.username }}
+                                    </h5>
+                                    <hr class="mb-4">
+                                    {% if address %}
+                                        <a class="btn btn-deep-orange btn-lg btn-block mb-2" href="
+                                            {% if user.is_authenticated %}
+                                                {% url "offer" object.id %}
+                                            {% else %}
+                                                {% url "login" %}
+                                            {% endif %}
+                                        "><i class="fas fa-hand-holding-usd mr-2"></i>{% trans "Make an offer" %}</a>
+                                        {% if edit %}
+                                            <hr>
+                                            <a class="btn btn-deep-orange btn-lg btn-block mb-2" href="{% url "edit-ad" object.id %}">{% trans "Edit this ad" %}</a>
+                                        {% endif %}
+                                    {% else %}
+                                        <a class="btn btn-deep-orange btn-lg btn-block mb-2" href="{% url "edit-ad" object.id %}">{% trans "Edit this ad" %}</a>
+                                        <a class="btn btn-primary btn-lg btn-block" href="{% url "delete-ad" object.id %}">{% trans "Delete this ad" %}</a>
+                                        <hr>
+                                        <a class="btn btn-deep-orange btn-lg btn-block mb-2" href="{% url "profil-ads" %}">{% trans "Back" %}</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if address %}
+                <div class="container mt-2 mb-3">
+                    <hr>
+                </div>
+                {% if products %}
+                    <div class="container">
+                        <h3 class="mb-4">{% trans "Others ads from this categorie" %}</h3>
+                    </div>
+                    <!--Section: Products v.3-->
+                    <section class="text-center mb-4">
+                        <!--Grid row-->
+                        <div class=" row wow fadeIn">
+                            {% for product in products %}
+                                <!--Grid column-->
+                                <div class="col-lg-3 flex-center col-md-6 mb-4">
+                                    <!--Card-->
+                                    <div class="card" style="width: 240px; height: 360px;">
+                                        <!--Card image-->
+                                        <div class="view overlay" style="background-image: url('{{ product.picture_1.url }}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                                            <a href="{% url "ad" product.product.id %}">
+                                                <div class="mask rgba-white-slight"></div>
+                                            </a>
+                                        </div>
+                                        <!--Card content-->
+                                        <div class="card-body text-center">
+                                            <!--Category & Title-->
+                                            <a href="{% url "ad" product.product.id %}" class="grey-text">
+                                                <h5>{{ product.product.categorie.name }}</h5>
+                                            </a>
+                                            <h5>
+                                                <strong>
+                                                    <a href="{% url "ad" product.product.id %}" class="dark-grey-text">{{ product.product.title }}</a>
+                                                </strong>
+                                            </h5>
+                                            <h4 class="font-weight-bold deep-orange-text">
+                                                <strong>{{ product.product.price }}€</strong>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+                {% else %}
+                    {% if others %}
+                        <div class="container mb-3">
+                            <h3 class="mb-3">{% trans "Ads from other categories" %}</h3>
+                        </div>
+                        <!--Section: Products v.3-->
+                        <section class="text-center mb-4">
+                            <!--Grid row-->
+                            <div class="row wow fadeIn">
+                                {% for product in others %}
+                                    <!--Grid column-->
+                                    <div class="col-lg-3 flex-center col-md-6 mb-4">
+                                        <!--Card-->
+                                        <div class="card" style="width: 240px; height: 360px;">
+                                            <!--Card image-->
+                                            <div class="view overlay" style="background-image: url('{{ product.picture_1.url }}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                                                <a href="{% url "ad" product.product.id %}">
+                                                    <div class="mask rgba-white-slight"></div>
+                                                </a>
+                                            </div>
+                                            <!--Card content-->
+                                            <div class="card-body text-center">
+                                                <!--Category & Title-->
+                                                <a href="{% url "ad" product.product.id %}" class="grey-text">
+                                                    <h5>{{ product.product.categorie.name }}</h5>
+                                                </a>
+                                                <h5>
+                                                    <strong>
+                                                        <a href="{% url "ad" product.product.id %}" class="dark-grey-text">{{ product.product.title }}</a>
+                                                    </strong>
+                                                </h5>
+                                                <h4 class="font-weight-bold deep-orange-text">
+                                                    <strong>{{ product.product.price }}€</strong>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </section>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}

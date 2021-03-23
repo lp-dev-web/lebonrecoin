@@ -1,0 +1,15 @@
+[
+{
+  "model": "app.product",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "categorie": 9,
+    "title": "Oppo Watch 46mm",
+    "price": 250,
+    "description": "Bonjour,\r\nje vends ma montre connectée oppo watch.",
+    "state": 1,
+    "created_at": "2021-02-06T00:00:00Z"
+  }
+}
+]

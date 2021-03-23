@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans "Your address" %}{% endblock %}
+{% block content %}
+    <!--Main layout-->
+    <main class="mt-5 pt-4">
+        <div class="container wow fadeIn">
+            {% if messages %}
+                {% for alert in messages %}
+                    <div class="mt-2">
+                        <div class="alert alert-{{ alert.level_tag }}">
+                            {{ alert.message }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <!-- Heading -->
+            <h2 class="{% if messages %}my-4{% else %}my-5{% endif %} h2 text-center">{% trans "Your address" %}</h2>
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-lg-12 mb-4">
+                    <!--Card-->
+                    <div class="card card-body text-decoration-none dark-grey-text">
+                        <h4>{% trans "Country" %}:</h4>
+                        <p>{{ object.country }}</p>
+                        <h4>{% trans "Region" %}:</h4>
+                        <p>{{ object.region }}</p>
+                        <h4>{% trans "City" %}:</h4>
+                        <p>{{ object.city }}</p>
+                        <h4>{% trans "Address" %}:</h4>
+                        <p>{{ object.address }}</p>
+                        <h4>{% trans "Phone number" %}:</h4>
+                        <p class="m-0">{{ object.phone_number }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row flex-center">
+                <div class="col-md-4 mt-3 mb-4">
+                    <a class="btn deep-orange white-text btn-lg btn-block" href="{% url "view-information" request.user.id %}">{% trans "Back" %}</a>
+                </div>
+                <div class="col-md-4 mt-n3 mt-md-3 mb-4">
+                    <a class="btn deep-orange white-text btn-lg btn-block" href="{% url "edit-address" object.pk %}">{% trans "Edit" %}</a>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

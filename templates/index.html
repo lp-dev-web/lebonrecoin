@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans "Home" %}{% endblock %}
+{% block content %}
+    <!--Carousel Wrapper-->
+    <div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
+        <!--Indicators-->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+            <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+        </ol>
+        <!--Slides-->
+        <div class="carousel-inner" role="listbox">
+            <!--First slide-->
+            <div class="carousel-item active">
+                <div class="view" style="background-image: url('{% static "img/index-1.jpg" %}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                    <!-- Mask & flexbox options-->
+                    <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
+                        <!-- Content -->
+                        <div class="text-center white-text mx-5 wow fadeIn">
+                            <h1 class="mb-4">
+                                <strong>{% trans "Find products you need." %}</strong>
+                            </h1>
+                            <p class="mb-4 d-none d-md-block">
+                                <strong>{% trans "Search among more than 10,000 offers posted on LeBonRecoin and find the perfect product." %}</strong>
+                            </p>
+                            <a href="{% url "search" %}" class="btn btn-outline-white btn-lg">{% trans "Start Search" %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Second slide-->
+            <div class="carousel-item">
+                <div class="view" style="background-image: url('{% static "img/index-2.jpg" %}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                    <!-- Mask & flexbox options-->
+                    <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
+                        <!-- Content -->
+                        <div class="text-center white-text mx-5 wow fadeIn">
+                            <h1 class="mb-4">
+                                <strong>{% trans "Sell what you no longer use!" %}</strong>
+                            </h1>
+                            <p class="mb-4 d-none d-md-block">
+                                <strong>{% trans "Earn money by selling your possessions that no longer serve you." %}</strong>
+                            </p>
+                            <a href="
+                                {% if user.is_authenticated %}
+                                    {% url "new-ad" %}
+                                {% else %}
+                                    {% url "login" %}
+                                {% endif %}
+                            " class="btn btn-outline-white btn-lg">{% trans "Post an ad" %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Third slide-->
+            <div class="carousel-item">
+                <div class="view" style="background-image: url('{% static "img/index-3.jpg" %}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                    <!-- Mask & flexbox options-->
+                    <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
+                        <!-- Content -->
+                        <div class="text-center white-text mx-5 wow fadeIn">
+                            <h1 class="mb-4">
+                                <strong>{% trans "Good for the planet!" %}</strong>
+                            </h1>
+                            <p class="mb-4 d-none d-md-block">
+                                <strong>{% trans "The sale of items allows to give them a new life by recycling them." %}</strong>
+                            </p>
+                            <a href="
+                                {% if user.is_authenticated %}
+                                    {% url "new-ad" %}
+                                {% else %}
+                                    {% url "login" %}
+                                {% endif %}
+                            " class="btn btn-outline-white btn-lg">{% trans "Post an ad" %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Controls-->
+        <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">{% trans "Previous" %}</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">{% trans "Next" %}</span>
+        </a>
+    </div>
+    <!--Main layout-->
+    <main>
+        <div class="container">
+            {% if messages %}
+                {% for alert in messages %}
+                    <div class="mt-3">
+                        <div class="alert alert-{{ alert.level_tag }}">
+                            {{ alert.message }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <!--Navbar-->
+            <nav class="navbar navbar-expand-lg navbar-dark mdb-color mt-3 mb-5 deep-orange">
+                <!-- Navbar brand -->
+                <span class="navbar-brand">{% trans "Categories" %}:</span>
+                <!-- Collapse button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Collapsible content -->
+                <div class="collapse navbar-collapse" id="basicExampleNav">
+                    <!-- Links -->
+                    <ul class="navbar-nav mr-auto">
+                        {% for object in object_list %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url "search-categorie" object.id %}">{{ object.name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <!-- Links -->
+                    <form action="{% url "searching" %}" method="post" class="form-inline">
+                        {% csrf_token %}
+                        <div class="md-form my-0">
+                            <div class="input-group">
+                                <button class="input-group-text border-0 deep-orange" type="submit"><i class="fas fa-search"></i></button>
+                                <input type="search" class="form-control mr-sm-2 deep-orange-ic dark-grey-text" placeholder="{% trans "Search" %}" aria-label="Search" name="input-search" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+            <!--Section: Products v.3-->
+            <section class="text-center mb-4">
+                <!--Grid row-->
+                <div class="row wow fadeIn">
+                    {% for product in products %}
+                        <!--Grid column-->
+                        <div class="col-lg-3 flex-center col-md-6 mb-4">
+                            <!--Card-->
+                            <div class="card" style="width: 240px; height: 360px;">
+                                <!--Card image-->
+                                <div class="view overlay" style="background-image: url('{{ product.picture_1.url }}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                                    <a href="{% url "ad" product.product.id %}">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                                <!--Card content-->
+                                <div class="card-body text-center">
+                                    <!--Category & Title-->
+                                    <a href="{% url "ad" product.product.id %}" class="grey-text">
+                                        <h5>{{ product.product.categorie.name }}</h5>
+                                    </a>
+                                    <h5>
+                                        <strong>
+                                            <a href="{% url "ad" product.product.id %}" class="dark-grey-text">{{ product.product.title }}</a>
+                                        </strong>
+                                    </h5>
+                                    <a href="{% url "ad" product.product.id %}">
+                                        <h4 class="font-weight-bold deep-orange-text">
+                                            <strong>{{ product.product.price }}€</strong>
+                                        </h4>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+            <div class="row flex-center">
+                <div class="col-md-5 mb-2">
+                    <a class="btn deep-orange white-text btn-lg btn-block" href="{% url "search" %}">{% trans "Load more..." %}</a>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

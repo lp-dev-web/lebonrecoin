@@ -1,0 +1,38 @@
+[
+{
+  "model": "app.citie",
+  "pk": 13000,
+  "fields": {
+    "name": "Marseille",
+    "country": "FR",
+    "region": 93
+  }
+},
+{
+  "model": "app.citie",
+  "pk": 13100,
+  "fields": {
+    "name": "Aix-en-Provence",
+    "country": "FR",
+    "region": 93
+  }
+},
+{
+  "model": "app.citie",
+  "pk": 30000,
+  "fields": {
+    "name": "Nîmes",
+    "country": "FR",
+    "region": 76
+  }
+},
+{
+  "model": "app.citie",
+  "pk": 30100,
+  "fields": {
+    "name": "Alès",
+    "country": "FR",
+    "region": 76
+  }
+}
+]

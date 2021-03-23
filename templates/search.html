@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans "Search" %}{% endblock %}
+{% block content %}
+    <!--Main layout-->
+    <main class="mt-5 pt-2">
+        <div class="container">
+            <!--Navbar-->
+            <nav class="navbar navbar-expand-lg navbar-dark mdb-color mt-5 mb-5 deep-orange">
+                <!-- Navbar brand -->
+                <span class="navbar-brand">{% trans "Categories" %}:</span>
+                <!-- Collapse button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Collapsible content -->
+                <div class="collapse navbar-collapse" id="basicExampleNav">
+                    <!-- Links -->
+                    <ul class="navbar-nav mr-auto">
+                        {% for categorie in categories %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url "search-categorie" categorie.id %}">{{ categorie }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <!-- Links -->
+                    <form action="{% url "searching" %}" method="post" class="form-inline">
+                        {% csrf_token %}
+                        <div class="md-form my-0">
+                            <div class="input-group">
+                                <button class="input-group-text border-0 deep-orange" type="submit"><i class="fas fa-search"></i></button>
+                                <input type="search" class="form-control mr-sm-2 deep-orange-ic dark-grey-text" placeholder="{% trans "Search" %}" aria-label="Search" name="input-search" value="{{ search }}" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+            <!--Section: Products v.3-->
+            <section class="text-center mb-4">
+                <!--Grid row-->
+                <div class="row wow fadeIn">
+                    {% if object_list %}
+                        {% for product in object_list %}
+                            <!--Grid column-->
+                            <div class="col-lg-3 flex-center col-md-6 mb-4">
+                                <!--Card-->
+                                <div class="card" style="width: 240px; height: 360px;">
+                                    <!--Card image-->
+                                    <div class="view overlay" style="background-image: url('{{ product.picture_1.url }}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                                        <a href="{% url "ad" product.product.id %}">
+                                            <div class="mask rgba-white-slight"></div>
+                                        </a>
+                                    </div>
+                                    <!--Card content-->
+                                    <div class="card-body text-center">
+                                        <!--Category & Title-->
+                                        <a href="{% url "ad" product.product.id %}" class="grey-text">
+                                            <h5>{{ product.product.categorie.name }}</h5>
+                                        </a>
+                                        <h5>
+                                            <strong>
+                                                <a href="{% url "ad" product.product.id %}" class="dark-grey-text">{{ product.product.title }}</a>
+                                            </strong>
+                                        </h5>
+                                        <h4 class="font-weight-bold deep-orange-text">
+                                            <strong>{{ product.product.price }}€</strong>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="container text-center flex-center mt-3 mb-5 p-5">
+                            <h3 class="text-center">{% trans "No ads were found." %}</h3>
+                        </div>
+                    {% endif %}
+                </div>
+            </section>
+        </div>
+    </main>
+{% endblock %}

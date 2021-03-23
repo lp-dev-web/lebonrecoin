@@ -1,0 +1,164 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- Title -->
+    <title>{% block title %}{% endblock %} - LeBonRecoin</title>
+    <!-- CSS -->
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style-custom.css' %}">
+</head>
+
+<body>
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container">
+        <!-- Brand -->
+        <a class="navbar-brand waves-effect" href="{% url "index" %}">
+            <strong class="deep-orange-text">LeBonRecoin</strong>
+        </a>
+        <!-- Collapse -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a href="
+                        {% if user.is_authenticated %}
+                            {% url "new-ad" %}
+                        {% else %}
+                            {% url "login" %}
+                        {% endif %}
+                    " class="nav-link border rounded waves-effect deep-orange white-text">
+                        <i class="fas fa-plus-square mr-2"></i>{% trans "Place an ad" %}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <form action="{% url "searching" %}" method="post" class="form-inline">
+                        {% csrf_token %}
+                        <div class="md-form my-0">
+                            <div class="input-group">
+                                <button class="input-group-text border-0 white ml-2" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                                <input type="search" class="form-control mr-sm-2" placeholder="{% trans "Search" %}"
+                                       aria-label="Search" name="input-search" value="{{ search }}" />
+                            </div>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+            <!-- Right -->
+            <ul class="navbar-nav nav-flex-icons">
+                <li class="nav-item mr-2">
+                    <a href="
+                        {% if user.is_authenticated %}
+                            {% url "list-favorites" %}
+                        {% else %}
+                            {% url "login" %}
+                        {% endif %}
+                    " class="nav-link waves-effect">
+                        <i class="far fa-heart"></i>
+                        <span class="clearfix d-none d-sm-inline-block">{% trans "Favorites" %}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="
+                        {% if user.is_authenticated %}
+                            {% url "profil" %}
+                        {% else %}
+                            {% url "login" %}
+                        {% endif %}
+                    " class="nav-link border border-light rounded waves-effect">
+                        {{ request.user.username }}
+                        <i class="far fa-user"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Content -->
+{% block content %}
+{% endblock %}
+<!-- Footer -->
+<footer class="page-footer font-small mt-4 wow fadeIn deep-orange">
+    <hr class="deep-orange my-4">
+    <div class="container">
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="footer"><strong>{% trans "ABOUT THE BONRECOIN" %}</strong></h5>
+                <hr class="white">
+                <p><a href="#">{% trans "Who are we?" %}</a></p>
+                <p><a href="#">{% trans "How to reach us" %}</a></p>
+                <p><a href="#">{% trans "Responsible actor of the French economy" %}</a></p>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="footer"><strong>{% trans "LEGAL INFORMATION" %}</strong></h5>
+                <hr class="white">
+                <p><a href="#">{% trans "General terms and conditions of use" %}</a></p>
+                <p><a href="#">{% trans "Broadcasting, referencing and dereferencing rules" %}</a></p>
+                <p><a href="#">{% trans "General terms and conditions of sale" %}</a></p>
+                <p><a href="#">{% trans "Privacy / cookies" %}</a></p>
+                <p><a href="#">{% trans "Your rights and obligations" %}</a></p>
+                <p><a href="#">{% trans "Ranking Criteria" %}</a></p>
+                <p><a href="#">{% trans "Court Decisions" %}</a></p>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="footer"><strong>{% trans "OUR PROFESSIONAL SOLUTIONS" %}</strong></h5>
+                <hr class="white">
+                <p><a href="#">{% trans "Advertising" %}</a></p>
+                <p><a href="#">{% trans "Real estate professionals" %}</a></p>
+                <p><a href="#">{% trans "Your recruitments" %}</a></p>
+                <p><a href="#">{% trans "Auto professionals" %}</a></p>
+                <p><a href="#">{% trans "Tourism Professionals" %}</a></p>
+                <p><a href="#">{% trans "Other business solutions" %}</a></p>
+                <p><a href="#">{% trans "Directory of professionals" %}</a></p>
+                <p><a href="#">{% trans "Free Employment Deposit for VSEs" %}</a></p>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="footer"><strong>{% trans "ANY QUESTIONS?" %}</strong></h5>
+                <hr class="white">
+                <p><a href="#">{% trans "Help" %}</a></p>
+                <p><a href="#">{% trans "The secure payment service and delivery" %}</a></p>
+                <p><a href="#">{% trans "Ask the Community for advice" %}</a></p>
+                <p><a href="#">{% trans "Status of our services" %}</a></p>
+            </div>
+        </div>
+    </div>
+    <!--Copyright-->
+    <div class="footer-copyright py-3 text-center white-text">
+        &copy; <script>document.write(new Date().getFullYear())</script> Copyright -
+        <a href="{% url "index" %}"> LeBonRecoin.fr </a>
+    </div>
+</footer>
+<!-- SCRIPTS -->
+<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+<script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+</script>
+</body>
+</html>

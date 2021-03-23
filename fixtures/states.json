@@ -1,0 +1,37 @@
+[
+{
+  "model": "app.state",
+  "pk": 1,
+  "fields": {
+    "name": "Neuf"
+  }
+},
+{
+  "model": "app.state",
+  "pk": 2,
+  "fields": {
+    "name": "Trés bon état"
+  }
+},
+{
+  "model": "app.state",
+  "pk": 3,
+  "fields": {
+    "name": "Bon état"
+  }
+},
+{
+  "model": "app.state",
+  "pk": 4,
+  "fields": {
+    "name": "Satisfaisant"
+  }
+},
+{
+  "model": "app.state",
+  "pk": 5,
+  "fields": {
+    "name": "Pour pièces"
+  }
+}
+]

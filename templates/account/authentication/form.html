@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+    <!--Main layout-->
+    <main class="mt-5 pt-4">
+        <div class="container wow fadeIn">
+            {% if messages %}
+                {% for alert in messages %}
+                    <div class="mt-2">
+                        <div class="alert alert-{{ alert.level_tag }}">
+                            {{ alert.message }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="m-5 flex-center">
+                <!--Card-->
+                <div class="col-lg-8 card">
+                    <!--Card content-->
+                    <form action="" method="post" class="card-body">
+                        {% csrf_token %}
+                        <!-- Heading -->
+                        <h2 class="mt-4 h2 text-center"><strong>{{ title }}</strong></h2>
+                        <p class="mb-1 text-center"><strong>{{ subtitle }}</strong></p>
+                        <p class="mb-5 text-center dark-grey-text">{{ account }} <a href="{% url link %}">{{ title_link }}</a></p>
+                        <hr>
+                        {% for field in form %}
+                            <section class="mb-4">
+                                {{ field.label }}
+                                {{ field }}
+                                <div class="grey-text">
+                                    {{ field.help_text }}
+                                </div>
+                                <div class="red-text error">
+                                    {{ field.errors }}
+                                </div>
+                            </section>
+                        {% endfor %}
+                        {% if register_form %}
+                            <section class="mb-4">
+                                <input type="checkbox" id="terms-conditions" name="terms-conditions" required>
+                                <label for="terms-conditions">
+                                    {% trans "By checking this box, you agree to our" %}
+                                    <a href="">{% trans "terms and conditions" %}</a>
+                                    {% trans "and" %}
+                                    <a href="">{% trans "privacy policy" %}</a>.
+                                </label>
+                            </section>
+                        {% endif %}
+                        <hr class="mt-4 mb-4">
+                        <button class="btn btn-deep-orange btn-lg btn-block" type="submit">{{ title }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

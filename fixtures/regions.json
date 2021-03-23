@@ -1,0 +1,146 @@
+[
+{
+  "model": "app.region",
+  "pk": 1,
+  "fields": {
+    "name": "Guadeloupe",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 2,
+  "fields": {
+    "name": "Martinique",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 3,
+  "fields": {
+    "name": "Guyane",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 4,
+  "fields": {
+    "name": "La Réunion",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 6,
+  "fields": {
+    "name": "Mayotte",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 11,
+  "fields": {
+    "name": "île-de-France",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 24,
+  "fields": {
+    "name": "Centre-Val de Loire",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 27,
+  "fields": {
+    "name": "Bourgogne-Franche-Comté",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 28,
+  "fields": {
+    "name": "Normandie",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 32,
+  "fields": {
+    "name": "Hauts-de-France",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 44,
+  "fields": {
+    "name": "Grand Est",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 52,
+  "fields": {
+    "name": "Pays de la Loire",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 53,
+  "fields": {
+    "name": "Bretagne",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 75,
+  "fields": {
+    "name": "Nouvelle-Aquitaine",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 76,
+  "fields": {
+    "name": "Occitanie",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 84,
+  "fields": {
+    "name": "Auvergne-Rhône-Alpes",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 93,
+  "fields": {
+    "name": "Provence-Alpes-Côte d'Azur",
+    "country": "FR"
+  }
+},
+{
+  "model": "app.region",
+  "pk": 94,
+  "fields": {
+    "name": "Corse",
+    "country": "FR"
+  }
+}
+]
