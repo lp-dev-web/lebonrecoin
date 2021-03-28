@@ -7,6 +7,7 @@ Création d'un site web de vente de produits d'occasions.
 ## Fonctionnalités
 * Dépôt d'annonces
 * Consultation d'annonces
+* Enregistrement de favoris
 * Inscription et connexion à un compte client
 * Gestion des annonces publiées
 * Gestion des favoris enregistrés
